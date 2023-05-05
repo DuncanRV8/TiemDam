@@ -82,4 +82,17 @@ public class Almacen {
             articulos[i].imprimir();
         }
     }
+
+    //Recibir Articulos
+    public boolean recibirArticulos(int cantidad){
+        if (cantidad <= 0) {
+            System.out.println("ERROR");
+            return false;
+        }
+        else{
+            
+            System.out.println("Se han agregado la cantidad");
+            return true;
+        }
+    }
 }
