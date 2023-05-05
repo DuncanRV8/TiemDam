@@ -1,15 +1,23 @@
 public class Articulo {
 
+
+    //enum
+    public enum IVA{
+        Normal,Reducido,SuperReducido;
+
+    }
+
     //atributos
     private String nombre;
     private double precio;
-    final private double iva = 21;
+    private IVA iva; 
     private int cantidad;
 
 
     //constructor
-    public Articulo(String nombre, double precio, int cantidad){
+    public Articulo(String nombre, IVA iva, double precio, int cantidad){
         this.nombre = nombre;
+        this.iva = iva;
         this.precio = precio;
         this.cantidad = cantidad;
     }
@@ -35,16 +43,15 @@ public class Articulo {
         this.cantidad =+ cant;
     }
 
-    public void disminuir(int cant){
+    public boolean disminuir(int cant){
         if (cant > cantidad) {
             System.out.println("Error no se puede quitar tanta cantidad");
+            return false;
         }
         else{
             System.out.println("Se ha restado la cantidad");
             cantidad =- cant;
+            return true;
         }
     }
-
-
-
 }
