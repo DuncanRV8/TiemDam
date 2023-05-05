@@ -36,6 +36,13 @@ public class Articulo {
     public int getCantidad() {
         return cantidad;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getNombre() {
+        return nombre;
+    }
     
     //Metodos
     public void aumentar(int cant){

@@ -10,7 +10,9 @@ public class Almacen {
         this.maxArticulos = maxArticulos;
     }
 
-   public boolean añadirArticulo(String nombre, Articulo.IVA iva, double precio, int cantidad){
+
+    //Añadir articulos
+    public boolean añadirArticulo(String nombre, Articulo.IVA iva, double precio, int cantidad){
         Articulo articulo = new Articulo(nombre,iva, precio, cantidad); 
         if (indice > maxArticulos) {
             System.out.println("No hay mas espacio");
@@ -25,6 +27,7 @@ public class Almacen {
         }
     }
 
+    //Eliminar articulos
     public boolean eliminarArticulo(int eliminar){
         if (eliminar <= 0 && eliminar > indice) {
             System.out.println("ERROR");
@@ -42,6 +45,7 @@ public class Almacen {
         }
     }
 
+    //Modificar Articulos
     public boolean modificarArticulo(int modificar, int cantidad, double precio){
         if (modificar < 0 && modificar > indice) {
             System.out.println("Error");
@@ -55,10 +59,23 @@ public class Almacen {
         }
     }
 
-    public boolean buscarArticulo(){
-        return true;
+    //Buscar Articulos
+    public boolean buscarArticulo(String nombre){
+        boolean comprobar = true;
+        for (int i = 0; i < indice; i++) {
+            if (articulos[i].getNombre().contains(nombre)) {
+                articulos[i].imprimir();
+                comprobar = true;
+                
+            }
+            else{
+                comprobar = false;
+            }
+        }
+        return comprobar;
     }
 
+    //Ver articulos
     public void verArticulo(){
         for (int i = 0; i < articulos.length; i++) {
             System.out.print(i + ". ");
