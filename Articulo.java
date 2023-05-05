@@ -54,4 +54,8 @@ public class Articulo {
             return true;
         }
     }
+
+    public void imprimir(){
+      System.out.println(nombre + " " + precio + " " + cantidad + " " + iva  );
+    }
 }

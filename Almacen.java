@@ -58,4 +58,11 @@ public class Almacen {
     public boolean buscarArticulo(){
         return true;
     }
+
+    public void verArticulo(){
+        for (int i = 0; i < articulos.length; i++) {
+            System.out.print(i + ". ");
+            articulos[i].imprimir();
+        }
+    }
 }
