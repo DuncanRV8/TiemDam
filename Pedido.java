@@ -33,4 +33,7 @@ public class Pedido {
     public double getPreciofinal() {
         return preciofinal;
     }
+
+    //metodos
+    
 }
