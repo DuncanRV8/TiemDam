@@ -15,6 +15,9 @@ public class Articulo {
 
 
     //constructor
+    public Articulo() {
+        
+    }
     public Articulo(String nombre, IVA iva, double precio, int cantidad){
         this.nombre = nombre;
         this.iva = iva;
@@ -63,6 +66,11 @@ public class Articulo {
     }
 
     public void imprimir(){
-      System.out.println(nombre + " " + precio + " " + cantidad + " " + iva  );
+        System.out.println("Nombre: "  + nombre + " Precio: " + precio + " Cantidad: " + cantidad);
+        System.out.println(" ");
+    }
+
+    public void imprimirTodo(){
+        System.out.println("Nombre: "  + nombre + " Precio: " + precio + " Cantidad: " + cantidad + " Iva: " + iva);
     }
 }
