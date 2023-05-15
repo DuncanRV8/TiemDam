@@ -32,7 +32,7 @@ public class TienDam {
     System.out.println("3. Quitar articulo");
     System.out.println("4. Modificar articulo");
     System.out.println("5. Aplicar descuento");
-    System.out.println("6. Mostrar ticket");
+    System.out.println("6. Mostrar carro");
     System.out.println("7. Volver al menu principal");
     System.out.println("8. Salir");
    }
@@ -73,7 +73,7 @@ public static void elegirAlmacen(int eleccion){
         break;
 
         case 3:
-            añadirArticulo();
+            agregarArticulo();
         break;
 
         case 4:
@@ -113,23 +113,23 @@ public static void elegirPedido(int eleccion){
         break;
 
         case 2:
-
+            añadirCarro();
         break;
 
         case 3:
-
+            eliminarDelCarro();
         break;
 
         case 4:
-
+            modificarCarro();
         break;
 
         case 5:
-
+            aplicarDesc();
         break;
 
         case 6:
-
+            Pedido.verCarrito();
         break;
 
         case 7:
@@ -176,15 +176,20 @@ public static void pedido(){
 //********************************************************************************
 //ALMACEN
 //Añadir articulo al almacen
-public static void añadirArticulo(){
+public static void agregarArticulo(){
     System.out.print("Dime el nombre del articulo: ");
     String nombre = lector.next();
     System.out.print("Dime el precio: ");
     double precio = lector.nextDouble();
     System.out.print("Dime la cantidad: ");
     int cantidad = lector.nextInt();
+    System.out.print("Dime el tipo de iva: ");
+    System.out.println("1.Normal 2.Reducida 3.Superreducida");
+    int elegir = lector.nextInt();
+    
 
-    almacen.añadirArticulo(nombre,precio,cantidad);
+
+    almacen.agregarArticulo(nombre,precio,cantidad,elegir);
 }
 //Eliminar articulo del almacen
 public static void eliminarArticulo(){
@@ -237,13 +242,43 @@ public static void devolverArticulo(){
 //********************************************************************************
 //PEDIDO
 
+//añadir al carro
+public static void añadirCarro(){
+    Almacen.articulosEnAlmacen();
+    System.out.print("Dime en que posicion se encuentra: ");
+    int pos = lector.nextInt();
+    System.out.print("Dime cuanta cantidad quieres: ");
+    int cantidad = lector.nextInt();
+    Pedido.añadirCarro(pos, cantidad);
+}
+
+//eliminar del carrito
+public static void eliminarDelCarro(){
+    System.out.println("Dime en la posicion que está: ");
+    int pos = lector.nextInt();
+    Pedido.eliminardelCarro(pos);
+}
+
+//modificar carro
+public static void modificarCarro(){
+    System.out.print("Dime que posicion quieres modificar: ");
+    int pos = lector.nextInt();
+    System.out.print("Dime la cantidad: ");
+    int cantidad = lector.nextInt();
+    Pedido.modificarcarro(pos, cantidad);
+}
+
+//aplicar descuento
+public static void aplicarDesc(){
+    Pedido.verCarrito();
+    System.out.print("A que articulo le quiieres descontar: ");
+    int pos = lector.nextInt();
+    System.out.print("Dime cuanto le quieres poner de descuento: ");
+    int desc = lector.nextInt();
+    Pedido.aplicarDesc(pos, desc);
+}
 
 //********************************************************************************
-
-
-
-
-
     public static void main(String[] args) {
         menu();
     }

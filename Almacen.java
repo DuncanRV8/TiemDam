@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class Almacen {
     //Atributos
     public static ArrayList<Articulo> almacen = new ArrayList<>();
@@ -26,13 +25,24 @@ public class Almacen {
     }
 
     //añadir articulo
-    public static boolean añadirArticulo(String nombre, double precio, int cantidad){
+    public static boolean agregarArticulo(String nombre, double precio,int cantidad, int eleccion){
         boolean comprobar = true;
         if (precio > 0) {
             Articulo nuevoart = new Articulo();
             nuevoart.setNombre(nombre);
             nuevoart.setPrecio(precio);
             nuevoart.setCantidad(cantidad);
+            switch (eleccion) {
+                case 1:
+                    nuevoart.setIva(Articulo.IVA.Normal);
+                break;
+                case 2:
+                    nuevoart.setIva(Articulo.IVA.Reducido);
+                break;
+                case 3:
+                    nuevoart.setIva(Articulo.IVA.SuperReducido); 
+                break;
+            }
             almacen.add(nuevoart);
             System.out.println("Se ha creado el objeto");
             comprobar = true;
@@ -63,7 +73,6 @@ public class Almacen {
         boolean comprobar = true;
         for (int i = 0; i < almacen.size(); i++) {
             if (almacen.get(i).getNombre().contains(nombre)) {
-                
                 System.out.println("Aquí tienes todos los articulos con ese nombre: ");
                 almacen.get(i).imprimir();
                 comprobar = true;
@@ -78,22 +87,25 @@ public class Almacen {
     }
 
     //Recibir Articulo
-    public static void recibirArticulo(int pos, int cantidad){
+    public static boolean recibirArticulo(int pos, int cantidad){
         int tmp = almacen.get(pos).getCantidad();
         tmp = tmp + cantidad;
         almacen.get(pos).setCantidad(tmp);
+        return true;
     }
 
     //devolver Articulo
-    public static void devolverArticulo(int pos , int cantidad){
+    public static boolean devolverArticulo(int pos , int cantidad){
         int tmp = almacen.get(pos).getCantidad();
         if (cantidad > tmp) {
            System.out.print("No se ha podido descontar"); 
+           return false;
         }
         else{
             System.out.println("Se ha podido eliminar la cantidad");
             tmp = tmp - cantidad;
             almacen.get(pos).setCantidad(tmp);
+            return true;
         }
     }
 

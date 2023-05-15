@@ -46,6 +46,12 @@ public class Articulo {
     public String getNombre() {
         return nombre;
     }
+    public void setIva(IVA iva) {
+        this.iva = iva;
+    }
+    public IVA getIva() {
+        return iva;
+    }
     
     //Metodos
     public void aumentar(int cant){
