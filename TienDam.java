@@ -1,5 +1,7 @@
 import java.net.SocketTimeoutException;
 import java.util.Scanner;
+
+import javax.sound.sampled.SourceDataLine;
 public class TienDam {
 
     //Variables
@@ -221,7 +223,7 @@ public static void agregarArticulo(){
         cantidad = pedirInt("Dime la cantidad: ");
         elegir = pedirInt("Dime el tipo de iva: 1.Normal 2.Reducida 3.Superreducida");
     } catch (Exception e) {
-        System.out.println("Valor introducido incorecto");
+        System.out.println("Valor introducido incorrecto");
         lector.nextLine();
     }
     almacen.agregarArticulo(nombre,precio,cantidad,elegir);
@@ -229,21 +231,31 @@ public static void agregarArticulo(){
 //Eliminar articulo del almacen
 public static void eliminarArticulo(){
     Almacen.articulosEnAlmacen();
-    System.out.print("Dime la posición: " );
-    int pos = lector.nextInt();
+    int pos = 0;
+    try {
+        pos = pedirInt("Dime la posición: ");
+    } catch (Exception e) {
+        System.out.println("Valor introducido incorrecto");
+    }
     almacen.eliminarArticulo(pos);
 }
 //Modificar articulo del almacen
 public static void modificarArticulo(){
     Almacen.articulosEnAlmacen();
-    System.out.print("Dime la posición en la que esta: ");
-    int pos = lector.nextInt();
-    System.out.print("Dime el nuevo nombre: ");
-    String nombre = lector.next();
-    System.out.print("Dime el nuevo precio: ");
-    double precio = lector.nextDouble();
-    System.out.print("Dime la cantidad: ");
-    int cantidad = lector.nextInt();
+    int pos = 0;
+    double precio = 0;
+    int cantidad = 0;
+    String nombre = null;
+    try {
+        pos = pedirInt("Dime la posición: ");
+        System.out.print("Dime el nuevo nombre: ");
+        nombre = lector.next();
+        precio = pedirInt("Dime el precio: ");
+        cantidad = pedirInt("Dime la cantidad: ");
+
+    } catch (Exception e) {
+        System.out.println("Valor introducido incorrecto");
+    }
     almacen.modificarArticulo(nombre, precio, cantidad, pos);
 }
 
