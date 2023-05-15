@@ -186,9 +186,6 @@ public static void agregarArticulo(){
     System.out.print("Dime el tipo de iva: ");
     System.out.println("1.Normal 2.Reducida 3.Superreducida");
     int elegir = lector.nextInt();
-    
-
-
     almacen.agregarArticulo(nombre,precio,cantidad,elegir);
 }
 //Eliminar articulo del almacen
