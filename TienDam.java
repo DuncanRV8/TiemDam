@@ -113,7 +113,7 @@ public static void elegirPedido(int eleccion){
         break;
 
         case 2:
-            añadirCarro();
+            agregarCarro();
         break;
 
         case 3:
@@ -240,13 +240,13 @@ public static void devolverArticulo(){
 //PEDIDO
 
 //añadir al carro
-public static void añadirCarro(){
+public static void agregarCarro(){
     Almacen.articulosEnAlmacen();
     System.out.print("Dime en que posicion se encuentra: ");
     int pos = lector.nextInt();
     System.out.print("Dime cuanta cantidad quieres: ");
     int cantidad = lector.nextInt();
-    Pedido.añadirCarro(pos, cantidad);
+    Pedido.agregarCarro(pos, cantidad);
 }
 
 //eliminar del carrito

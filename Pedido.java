@@ -45,7 +45,7 @@ public class Pedido {
     }
     
     //añadir al carrito
-    public static boolean añadirCarro(int pos, int cantidad){
+    public static boolean agregarCarro(int pos, int cantidad){
         boolean comprobar = true;
         if (pos >= 0) {
             carrito.add(Almacen.almacen.get(pos));
