@@ -4,7 +4,6 @@ public class Articulo {
     //enum
     public enum IVA{
         Normal,Reducido,SuperReducido;
-
     }
 
     //atributos
@@ -13,21 +12,25 @@ public class Articulo {
     private IVA iva; 
     private int cantidad;
 
-
     //constructor
     public Articulo() {
         
     }
     public Articulo(String nombre, IVA iva, double precio, int cantidad){
-        this.nombre = nombre;
-        this.iva = iva;
-        this.precio = precio;
-        this.cantidad = cantidad;
+        setNombre(nombre);
+        setIva(iva);
+        setPrecio(precio);
+        setCantidad(cantidad);
     }
 
     //Setter/Getter
     public void setPrecio(double precio) {
-        this.precio = precio;
+        if (precio > 0) {
+            this.precio = precio;
+        }
+        else{
+            System.out.println("No puedes introducir numeros negativos o 0");
+        }
     }
     public double getPrecio() {
         return precio;

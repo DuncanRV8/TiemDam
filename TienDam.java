@@ -171,8 +171,6 @@ public static void pedido(){
     }
 }
 
-
-
 //********************************************************************************
 //ALMACEN
 //Añadir articulo al almacen
