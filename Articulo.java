@@ -66,11 +66,7 @@ public class Articulo {
     }
 
     public void imprimir(){
-        System.out.println("Nombre: "  + nombre + " Precio: " + precio + " Cantidad: " + cantidad);
+        System.out.println("Nombre: "  + nombre + " Precio: " + precio + " Cantidad: " + cantidad + " Iva: " + iva );
         System.out.println(" ");
-    }
-
-    public void imprimirTodo(){
-        System.out.println("Nombre: "  + nombre + " Precio: " + precio + " Cantidad: " + cantidad + " Iva: " + iva);
     }
 }
