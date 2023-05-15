@@ -252,7 +252,6 @@ public static void modificarArticulo(){
         nombre = lector.next();
         precio = pedirInt("Dime el precio: ");
         cantidad = pedirInt("Dime la cantidad: ");
-
     } catch (Exception e) {
         System.out.println("Valor introducido incorrecto");
     }
