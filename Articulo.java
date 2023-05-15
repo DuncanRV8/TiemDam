@@ -37,7 +37,12 @@ public class Articulo {
     }
 
     public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+        if (cantidad > 0) {
+            this.cantidad = cantidad;
+        }
+        else{
+            System.out.println("No puedes introducir numeros negativos o 0");
+        }
     }
     public int getCantidad() {
         return cantidad;
