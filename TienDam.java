@@ -1,3 +1,4 @@
+import java.net.SocketTimeoutException;
 import java.util.Scanner;
 public class TienDam {
 
@@ -151,7 +152,14 @@ public static void menu(){
     while (true) {
         Almacen.iniciar();
         menuPricipal();
-        elegirMenu(lector.nextInt());
+        int opcion = 0;
+        try {
+           opcion = pedirInt("Elige una opción");
+        } catch (Exception e) {
+            System.out.println("valor introducido incorrecto");
+            lector.nextLine();
+        }
+        elegirMenu(opcion);
     }
 }
 
@@ -159,7 +167,14 @@ public static void menu(){
 public static void almacenn(){
     while (true) {
         menuAlmacen();
-        elegirAlmacen(lector.nextInt());
+        int opcion = 0;
+        try {
+            opcion = pedirInt("Elige una opcion");
+        } catch (Exception e) {
+            System.out.println("Valor introducido incorrecto");
+            lector.nextLine();
+        }
+        elegirAlmacen(opcion);
     }
 }
 
@@ -167,10 +182,24 @@ public static void almacenn(){
 public static void pedido(){
     while (true) {
         menuPedido();
-        elegirPedido(lector.nextInt());
+        int opcion = 0;
+        try {
+            opcion = pedirInt("Elige una opcion");
+        } catch (Exception e) {
+            System.out.println("Valor introducido incorrecto");
+            lector.nextLine();
+        }
+        elegirPedido(opcion);
     }
 }
-
+//********************************************************************************
+//Método pedir int
+public static int pedirInt(String mensaje){
+    System.out.println(mensaje);
+    int eleccion = lector.nextInt();
+    return eleccion;
+    
+}
 //********************************************************************************
 //ALMACEN
 //Añadir articulo al almacen

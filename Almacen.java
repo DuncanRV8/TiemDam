@@ -88,10 +88,16 @@ public class Almacen {
 
     //Recibir Articulo
     public static boolean recibirArticulo(int pos, int cantidad){
-        int tmp = almacen.get(pos).getCantidad();
-        tmp = tmp + cantidad;
-        almacen.get(pos).setCantidad(tmp);
-        return true;
+        if (cantidad > 0) {
+            almacen.get(pos).aumentar(cantidad);
+            System.out.println("Se ha aumentado la cantidad");
+            return true;
+        }
+        else{
+            System.out.println("No se ha podido aumentar porque es negativo o 0");
+            return false;
+        }
+        
     }
 
     //devolver Articulo
@@ -113,8 +119,5 @@ public class Almacen {
     public Almacen() {
 
     }
-
-
-
 }
  
