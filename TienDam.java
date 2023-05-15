@@ -154,7 +154,7 @@ public static void menu(){
         menuPricipal();
         int opcion = 0;
         try {
-           opcion = pedirInt("Elige una opción");
+           opcion = pedirInt("Elige una opción: ");
         } catch (Exception e) {
             System.out.println("valor introducido incorrecto");
             lector.nextLine();
@@ -169,7 +169,7 @@ public static void almacenn(){
         menuAlmacen();
         int opcion = 0;
         try {
-            opcion = pedirInt("Elige una opcion");
+            opcion = pedirInt("Elige una opcion: ");
         } catch (Exception e) {
             System.out.println("Valor introducido incorrecto");
             lector.nextLine();
@@ -184,7 +184,7 @@ public static void pedido(){
         menuPedido();
         int opcion = 0;
         try {
-            opcion = pedirInt("Elige una opcion");
+            opcion = pedirInt("Elige una opcion: ");
         } catch (Exception e) {
             System.out.println("Valor introducido incorrecto");
             lector.nextLine();
@@ -195,24 +195,35 @@ public static void pedido(){
 //********************************************************************************
 //Método pedir int
 public static int pedirInt(String mensaje){
-    System.out.println(mensaje);
+    System.out.print(mensaje);
     int eleccion = lector.nextInt();
     return eleccion;
     
+}
+
+//Método pedir double
+public static double pedirDouble(String mensaje){
+    System.out.print(mensaje);
+    double eleccion = lector.nextDouble();
+    return eleccion;
 }
 //********************************************************************************
 //ALMACEN
 //Añadir articulo al almacen
 public static void agregarArticulo(){
+    double precio = 0;
+    int cantidad = 0;
+    int elegir = 0;
     System.out.print("Dime el nombre del articulo: ");
     String nombre = lector.next();
-    System.out.print("Dime el precio: ");
-    double precio = lector.nextDouble();
-    System.out.print("Dime la cantidad: ");
-    int cantidad = lector.nextInt();
-    System.out.print("Dime el tipo de iva: ");
-    System.out.println("1.Normal 2.Reducida 3.Superreducida");
-    int elegir = lector.nextInt();
+    try {
+        precio = pedirDouble("Dime el precio: ");
+        cantidad = pedirInt("Dime la cantidad: ");
+        elegir = pedirInt("Dime el tipo de iva: 1.Normal 2.Reducida 3.Superreducida");
+    } catch (Exception e) {
+        System.out.println("Valor introducido incorecto");
+        lector.nextLine();
+    }
     almacen.agregarArticulo(nombre,precio,cantidad,elegir);
 }
 //Eliminar articulo del almacen
