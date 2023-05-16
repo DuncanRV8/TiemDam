@@ -245,6 +245,7 @@ public static void eliminarArticulo(){
         pos = pedirInt("Dime la posición: ");
     } catch (Exception e) {
         System.out.println("Valor introducido incorrecto");
+        lector.nextLine();
     }
     almacen.eliminarArticulo(pos);
 }
@@ -263,6 +264,7 @@ public static void modificarArticulo(){
         cantidad = pedirInt("Dime la cantidad: ");
     } catch (Exception e) {
         System.out.println("Valor introducido incorrecto");
+        lector.nextLine();
     }
     almacen.modificarArticulo(nombre, precio, cantidad, pos);
 }
@@ -286,6 +288,7 @@ public static void recibirArticulo(){
         cantidad = pedirInt("Dime la cantidad que quieres añadir");
     } catch (Exception e) {
         System.out.println("Valor introducido incorrecto");
+        lector.nextLine();
     }
     almacen.recibirArticulo(pos, cantidad);
 }
@@ -300,6 +303,7 @@ public static void devolverArticulo(){
         cantidad = pedirInt("Dime la cantidad que quieres añadir");
     } catch (Exception e) {
         System.out.println("Valor introducido incorrecto");
+        lector.nextLine();
     }
     almacen.devolverArticulo(pos, cantidad);
 }
