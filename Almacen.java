@@ -71,7 +71,6 @@ public class Almacen {
         }
     }
         
-
     //Eliminar articulo
     public boolean eliminarArticulo(int pos){
         if (pos >= 0 && pos <= articulos.size()) {
@@ -84,7 +83,6 @@ public class Almacen {
             System.out.println(" ");
             return false;
         }
-       
     }
     //Modificar articulo
     public boolean modificarArticulo(double precio, int cantidad, int pos){
@@ -93,7 +91,7 @@ public class Almacen {
                 articulos.get(pos).setPrecio(precio);
                 articulos.get(pos).setCantidad(cantidad);
             } catch (Exception e) {
-                System.out.println("No se ha podido crear");
+                System.err.println("No se ha podido crear");
             }
             
             System.out.println("Se ha modificado");

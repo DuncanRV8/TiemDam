@@ -21,7 +21,7 @@ public class Articulo {
             setPrecio(precio);
             setCantidad(cantidad);
         } catch (Exception e) {
-            System.out.println("No se puede crear");
+            System.err.println("No se puede crear");
         }
         
         

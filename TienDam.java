@@ -211,7 +211,7 @@ public static int pedirInt(String mensaje){
             num = lector.nextInt();
             continuar = false;
         } catch (Exception e) {
-            System.out.println("ERROR: parámetro no valido");
+            System.err.println("ERROR: parámetro no valido");
             lector.nextLine();
         }
     } while (continuar);
@@ -228,7 +228,7 @@ public static double pedirDouble(String mensaje){
             num = lector.nextDouble();
             continuar = false;
         } catch (Exception e) {
-            System.out.println("ERROR: parámetro no valido");
+            System.err.println("ERROR: parámetro no valido");
             lector.nextLine();
         }  
     } while (continuar);
