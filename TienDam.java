@@ -278,20 +278,29 @@ public static void buscarArticulo(){
 //Recibir articulo
 public static void recibirArticulo(){
     Almacen.articulosEnAlmacen();
-    System.out.print("Dime la posicion en la que se encuentra: ");
-    int pos = lector.nextInt();
-    System.out.print("Cuanta cantidad quieres añadir? ");
-    int cantidad = lector.nextInt();
+    int pos = 0;
+    int cantidad = 0;
+
+    try {
+        pos = pedirInt("Dime la posición en la que se encuentra: ");
+        cantidad = pedirInt("Dime la cantidad que quieres añadir");
+    } catch (Exception e) {
+        System.out.println("Valor introducido incorrecto");
+    }
     almacen.recibirArticulo(pos, cantidad);
 }
 
 //Devolver Articulo
 public static void devolverArticulo(){
     Almacen.articulosEnAlmacen();
-    System.out.print("Dime la posicion en la que se encuentra: ");
-    int pos = lector.nextInt();
-    System.out.print("Cuanta cantidad quieres quitar? ");
-    int cantidad = lector.nextInt();
+    int pos = 0;
+    int cantidad = 0;
+    try {
+        pos = pedirInt("Dime la posición en la que se encuentra: ");
+        cantidad = pedirInt("Dime la cantidad que quieres añadir");
+    } catch (Exception e) {
+        System.out.println("Valor introducido incorrecto");
+    }
     almacen.devolverArticulo(pos, cantidad);
 }
 //********************************************************************************
