@@ -1,12 +1,10 @@
-import java.net.SocketTimeoutException;
 import java.util.Scanner;
-
-import javax.sound.sampled.SourceDataLine;
 public class TienDam {
 
     //Variables
     private static final Scanner lector = new Scanner(System.in);
     public static Almacen almacen = new Almacen();
+    public static Pedido pedidos = new Pedido();
 
 
     //menu Principal
@@ -49,7 +47,7 @@ public static void elegirMenu(int eleccion){
     switch (eleccion) {
         //Menu de Almacen
         case 1:
-           almacenn();
+           almacen();
         break;
 
         //Menu de Pedido
@@ -72,7 +70,7 @@ public static void elegirMenu(int eleccion){
 public static void elegirAlmacen(int eleccion){
     switch (eleccion) {
         case 1:
-            Almacen.articulosEnAlmacen();
+            verAlmacen();
         break;
 
         case 2:
@@ -137,7 +135,7 @@ public static void elegirPedido(int eleccion){
         break;
 
         case 6:
-            Pedido.verCarrito();
+            pedidos.verCarrito();
         break;
 
         case 7:
@@ -158,7 +156,6 @@ public static void elegirPedido(int eleccion){
 //Bucle Menu principal
 public static void menu(){
     while (true) {
-        Almacen.iniciar();
         menuPricipal();
         int opcion = 0;
         try {
@@ -173,7 +170,7 @@ public static void menu(){
 }
 
 //Bucle de Almacen
-public static void almacenn(){
+public static void almacen(){
     while (true) {
         menuAlmacen();
         int opcion = 0;
@@ -220,6 +217,16 @@ public static double pedirDouble(String mensaje){
 }
 //********************************************************************************
 //ALMACEN
+
+//iniciar con algunos articulos
+public static void inicarArticulos(){
+    almacen.iniciar();
+}
+
+//Ver articulos
+public static void verAlmacen(){
+    almacen.articulosEnAlmacen();
+}
 //Añadir articulo al almacen
 public static void agregarArticulo(){
     double precio = 0;
@@ -230,7 +237,7 @@ public static void agregarArticulo(){
     try {
         precio = pedirDouble("Dime el precio: ");
         cantidad = pedirInt("Dime la cantidad: ");
-        elegir = pedirInt("Dime el tipo de iva: 1.Normal 2.Reducida 3.Superreducida: ");
+        elegir = pedirInt("Dime el tipo de iva: " + "\n" +  "1.Normal " + "\n" + "2.Reducida"  + "\n" + "3.Superreducida" + "\n");
     } catch (Exception e) {
         System.out.println("Valor introducido incorrecto");
         lector.nextLine();
@@ -239,7 +246,7 @@ public static void agregarArticulo(){
 }
 //Eliminar articulo del almacen
 public static void eliminarArticulo(){
-    Almacen.articulosEnAlmacen();
+    verAlmacen();
     int pos = 0;
     try {
         pos = pedirInt("Dime la posición: ") -1;
@@ -251,7 +258,7 @@ public static void eliminarArticulo(){
 }
 //Modificar articulo del almacen
 public static void modificarArticulo(){
-    Almacen.articulosEnAlmacen();
+    verAlmacen();
     int pos = 0;
     double precio = 0;
     int cantidad = 0;
@@ -271,7 +278,7 @@ public static void modificarArticulo(){
 
 //Buscar articulo del almacen
 public static void buscarArticulo(){
-    Almacen.articulosEnAlmacen();
+    verAlmacen();
     System.out.print("Dime el nombre del articulo: ");
     String nombre = lector.next();
     almacen.buscarArticulo(nombre);
@@ -279,7 +286,7 @@ public static void buscarArticulo(){
 
 //Recibir articulo
 public static void recibirArticulo(){
-    Almacen.articulosEnAlmacen();
+    verAlmacen();
     int pos = 0;
     int cantidad = 0;
 
@@ -295,7 +302,7 @@ public static void recibirArticulo(){
 
 //Devolver Articulo
 public static void devolverArticulo(){
-    Almacen.articulosEnAlmacen();
+    verAlmacen();
     int pos = 0;
     int cantidad = 0;
     try {
@@ -312,19 +319,25 @@ public static void devolverArticulo(){
 
 //añadir al carro
 public static void agregarCarro(){
-    Almacen.articulosEnAlmacen();
-    System.out.print("Dime en que posicion se encuentra: ");
-    int pos = lector.nextInt();
-    System.out.print("Dime cuanta cantidad quieres: ");
-    int cantidad = lector.nextInt();
-    Pedido.agregarCarro(pos, cantidad);
+    verAlmacen();
+    int pos = 0;
+    int cantidad = 0;
+    try {
+        pos = pedirInt("Dime la posicion en la que esta: ") -1;
+        cantidad = pedirInt("Dime la cantidad que quieres: ");
+    } catch (Exception e) {
+        System.out.println("No se ha podido añadir");
+    }
+    Articulo art = new Articulo(almacen.articulos.get(pos).getNombre(), almacen.articulos.get(pos).getPrecio(),cantidad, almacen.articulos.get(pos).getIva());
+    pedidos.agregarCarro(art);
 }
 
 //eliminar del carrito
 public static void eliminarDelCarro(){
-    System.out.println("Dime en la posicion que está: ");
-    int pos = lector.nextInt();
-    Pedido.eliminardelCarro(pos);
+    pedidos.verCarrito();
+    int pos = 0;
+    pos = pedirInt("Dime la posicion que quieres eliminar: ") -1;
+    pedidos.eliminardelCarro(pos);
 }
 
 //modificar carro
@@ -333,21 +346,22 @@ public static void modificarCarro(){
     int pos = lector.nextInt();
     System.out.print("Dime la cantidad: ");
     int cantidad = lector.nextInt();
-    Pedido.modificarcarro(pos, cantidad);
+    pedidos.modificarcarro(pos, cantidad);
 }
 
 //aplicar descuento
 public static void aplicarDesc(){
-    Pedido.verCarrito();
+    pedidos.verCarrito();
     System.out.print("A que articulo le quiieres descontar: ");
     int pos = lector.nextInt();
     System.out.print("Dime cuanto le quieres poner de descuento: ");
     int desc = lector.nextInt();
-    Pedido.aplicarDesc(pos, desc);
+    pedidos.aplicarDesc(pos, desc);
 }
 
 //********************************************************************************
     public static void main(String[] args) {
+        inicarArticulos();
         menu();
     }
 }

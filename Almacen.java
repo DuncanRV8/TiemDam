@@ -1,54 +1,55 @@
 import java.util.ArrayList;
 public class Almacen {
     //Atributos
-    public static ArrayList<Articulo> almacen = new ArrayList<>();
+    public ArrayList<Articulo> articulos = new ArrayList<>();
     
-    //articulos creados ya en el almacen
-    public static void articulosEnAlmacen(){
-        for (int i = 0; i < almacen.size(); i++) {
+    //articulos creados ya en el articulos
+    public void articulosEnAlmacen(){
+        for (int i = 0; i < articulos.size(); i++) {
             System.out.println("Articulo " + (i+1));
-            almacen.get(i).imprimir();
+            articulos.get(i).imprimir();
         }
     }
 
     //Iniciar con algunos ya
-    public static void iniciar(){
+    public void iniciar(){
         //articulo1
-        Articulo articulo1 = new Articulo("tomate", Articulo.IVA.Normal, 20, 12);
-        almacen.add(articulo1);
+        Articulo articulo1 = new Articulo("tomate",  20, 12, Articulo.IVA.Normal);
+        articulos.add(articulo1);
         //articulo2
-        Articulo articulo2 = new Articulo("manzana", Articulo.IVA.Reducido, 5, 20);
-        almacen.add(articulo2);
+        Articulo articulo2 = new Articulo("manzana", 5, 20, Articulo.IVA.Reducido);
+        articulos.add(articulo2);
         //articulo3
-        Articulo articulo3 = new Articulo("pizza", Articulo.IVA.SuperReducido, 12, 5);
-        almacen.add(articulo3);
+        Articulo articulo3 = new Articulo("pizza", 12, 5, Articulo.IVA.SuperReducido);
+        articulos.add(articulo3);
     }
 
     //añadir articulo
-    public static boolean agregarArticulo(String nombre, double precio,int cantidad, int eleccion){
+    public boolean agregarArticulo(String nombre, double precio,int cantidad, int eleccion){
         boolean comprobar = true;
         if (precio > 0 && cantidad > 0 && eleccion >=1 && eleccion <= 3) {
-            Articulo nuevoart = new Articulo();
-            nuevoart.setNombre(nombre);
-            nuevoart.setPrecio(precio);
-            nuevoart.setCantidad(cantidad);
+            Articulo nuevoArticulo = new Articulo();
+            nuevoArticulo.setNombre(nombre);
+            nuevoArticulo.setPrecio(precio);
+            nuevoArticulo.setCantidad(cantidad);
             switch (eleccion) {
                 case 1:
-                    nuevoart.setIva(Articulo.IVA.Normal);
+                    nuevoArticulo.setIva(Articulo.IVA.Normal);
                 break;
                 case 2:
-                    nuevoart.setIva(Articulo.IVA.Reducido);
+                    nuevoArticulo.setIva(Articulo.IVA.Reducido);
                 break;
                 case 3:
-                    nuevoart.setIva(Articulo.IVA.SuperReducido); 
+                    nuevoArticulo.setIva(Articulo.IVA.SuperReducido); 
                 break;
             }
-            almacen.add(nuevoart);
+            articulos.add(nuevoArticulo);
             System.out.println("Se ha creado el objeto");
             System.out.println(" ");
             comprobar = true;
             return comprobar;
-        }else{
+        }
+        else{
             System.out.println("No se ha podido añadir tu articulo");
             System.out.println(" ");
             comprobar = false;
@@ -57,9 +58,9 @@ public class Almacen {
     }
 
     //Eliminar articulo
-    public static boolean eliminarArticulo(int pos){
-        if (pos >= 0 && pos <= almacen.size()) {
-            almacen.remove(pos);
+    public boolean eliminarArticulo(int pos){
+        if (pos >= 0 && pos <= articulos.size()) {
+            articulos.remove(pos);
             System.out.println("Se ha eliminado el artículo");
             return true;
         }
@@ -71,11 +72,11 @@ public class Almacen {
        
     }
     //Modificar articulo
-    public static boolean modificarArticulo(String nombre, double precio, int cantidad, int pos){
+    public boolean modificarArticulo(String nombre, double precio, int cantidad, int pos){
         if (precio > 0 && cantidad > 0) {
-            almacen.get(pos).setNombre(nombre);
-            almacen.get(pos).setPrecio(precio);
-            almacen.get(pos).setCantidad(cantidad);
+            articulos.get(pos).setNombre(nombre);
+            articulos.get(pos).setPrecio(precio);
+            articulos.get(pos).setCantidad(cantidad);
             System.out.println("Se ha modificado");
             return true;
         }
@@ -86,12 +87,12 @@ public class Almacen {
     }
 
     //Buscar articulo
-    public static void buscarArticulo(String nombre){
+    public void buscarArticulo(String nombre){
         boolean comprobar = true;
-        for (int i = 0; i < almacen.size(); i++) {
-            if (almacen.get(i).getNombre().contains(nombre)) {
+        for (int i = 0; i < articulos.size(); i++) {
+            if (articulos.get(i).getNombre().contains(nombre)) {
                 System.out.println("Aquí tienes todos los articulos con ese nombre: ");
-                almacen.get(i).imprimir();
+                articulos.get(i).imprimir();
                 comprobar = true;
             } 
             else{
@@ -104,9 +105,9 @@ public class Almacen {
     }
 
     //Recibir Articulo
-    public static boolean recibirArticulo(int pos, int cantidad){
+    public boolean recibirArticulo(int pos, int cantidad){
         if (cantidad > 0) {
-            almacen.get(pos).aumentar(cantidad);
+            articulos.get(pos).aumentar(cantidad);
             System.out.println("Se ha aumentado la cantidad");
             return true;
         }
@@ -118,8 +119,8 @@ public class Almacen {
     }
 
     //devolver Articulo
-    public static boolean devolverArticulo(int pos , int cantidad){
-        int tmp = almacen.get(pos).getCantidad();
+    public boolean devolverArticulo(int pos , int cantidad){
+        int tmp = articulos.get(pos).getCantidad();
         if (cantidad > tmp) {
            System.out.print("No se ha podido descontar"); 
            return false;
@@ -127,7 +128,7 @@ public class Almacen {
         else{
             System.out.println("Se ha podido eliminar la cantidad");
             tmp = tmp - cantidad;
-            almacen.get(pos).setCantidad(tmp);
+            articulos.get(pos).setCantidad(tmp);
             return true;
         }
     }

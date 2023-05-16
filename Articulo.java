@@ -16,7 +16,7 @@ public class Articulo {
     public Articulo() {
         
     }
-    public Articulo(String nombre, IVA iva, double precio, int cantidad){
+    public Articulo(String nombre,  double precio, int cantidad, IVA iva){
         setNombre(nombre);
         setIva(iva);
         setPrecio(precio);

@@ -3,11 +3,10 @@ import java.util.ArrayList;
 public class Pedido {
     
     //Atributos
-    private static int contador = 0;
     private String nombre;
     private double porcentajedesc;
     private double subtotal, preciofinal;
-    private static ArrayList<Articulo> carrito = new ArrayList<>();
+    private ArrayList<Articulo> carrito = new ArrayList<>();
 
     //Setter y Getter
     public void setNombre(String nombre) {
@@ -37,36 +36,30 @@ public class Pedido {
 
     //metodos
     // ver el carrito
-    public static void verCarrito(){
+    public void verCarrito(){
         for (int i = 0; i < carrito.size(); i++) {
-            System.out.print(i + ". ");
+            System.out.println("Articulo " + (i+1));
             carrito.get(i).imprimir();
         }
     }
     
     //añadir al carrito
-    public static boolean agregarCarro(int pos, int cantidad){
-        boolean comprobar = true;
-        if (pos >= 0) {
-            carrito.add(Almacen.almacen.get(pos));
-            carrito.get(contador).setCantidad(cantidad);
-            System.out.println("Se ha añadido al carrito");
-            contador++;
-            comprobar = true;
+    public boolean agregarCarro(Articulo articulo){
+        if (carrito.add(articulo) && articulo.getCantidad() > 0) {
+            System.out.println("Se añadido al carrito");
             return true;
         }
         else{
-            System.out.println("No se ha podido añadir al carrito");
-            comprobar = false;
-            return comprobar;
+            System.out.println("No se ha podido añadir");
+            return false;
         }
     }
+
     //eliminar del carrito
-    public static boolean eliminardelCarro(int pos){
+    public boolean eliminardelCarro(int pos){
         if (pos >= 0) {
             carrito.remove(pos);
             System.out.println("Se ha eliminado");
-            contador--;
             return true;
         }
         else{
@@ -76,23 +69,22 @@ public class Pedido {
     }
 
     //modificar carrito
-    public static boolean modificarcarro(int pos, int cantidad){
-        
-        
+    public boolean modificarcarro(int pos, int cantidad){
         return true;
     }
+
+    //calcular precio
+    public void calcularPrecio(){
+        double precioFinal  = 0;
+        for (int i = 0; i < carrito.size(); i++) {
+           precioFinal = carrito.get(i).getPrecio() * carrito.get(i).getCantidad();
+        }
+    }
     //aplicar descuento
-    public static boolean aplicarDesc(int pos, int desc){
+    public boolean aplicarDesc(int pos, int desc){
         if (desc > 0 ) {
-            int cantidad = carrito.get(pos).getCantidad();
-            double precio = carrito.get(pos).getPrecio();
-            double sindesc = precio * cantidad;
-            double condesc = sindesc - (desc);
-            double loquedesc = sindesc - condesc;
-            System.out.println("Sin descuento: " + sindesc);
-            System.out.println("Lo que descontamos: " + loquedesc);
-            System.out.println("El total del descuento se queda como: " + condesc);
-            return true;
+           carrito.get(pos);
+           return true;
         }
         else{
             System.out.println("No se ha podido hacer el descuento");
