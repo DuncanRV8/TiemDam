@@ -115,7 +115,7 @@ public static void elegirAlmacen(int eleccion){
 public static void elegirPedido(int eleccion){
     switch (eleccion) {
         case 1:
-            
+            pedidos.calcularSubtotal();
         break;
 
         case 2:

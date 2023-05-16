@@ -87,7 +87,13 @@ public class Pedido {
 
     //calcular precio
     public void calcularSubtotal(){
-        
+        double todoSubTotal = 0;
+        for (int i = 0; i < carrito.size(); i++) {
+           double subtotal = carrito.get(i).getPrecio() * carrito.get(i).getCantidad();
+           System.out.println("Nombre: " + carrito.get(i).getNombre() + "Precio: " + subtotal);
+           todoSubTotal += subtotal;
+        }
+        System.out.println("Todo en total es: " + todoSubTotal);
     }
     //aplicar descuento
     public boolean aplicarDesc(int pos, int desc){
