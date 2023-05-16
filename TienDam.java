@@ -203,10 +203,19 @@ public static void pedido(){
 //********************************************************************************
 //Método pedir int
 public static int pedirInt(String mensaje){
-    int num= 0;
-    System.out.print(mensaje);
-    int eleccion = lector.nextInt();
-    return eleccion;
+    int num = 0;
+    boolean continuar = true;
+    do {
+        try {
+            System.out.println(mensaje);
+            num = lector.nextInt();
+            continuar = false;
+        } catch (Exception e) {
+            System.out.println("ERROR: No puedes poner eso");
+            lector.nextLine();
+        }
+    } while (continuar);
+    return num;
     
 }
 
