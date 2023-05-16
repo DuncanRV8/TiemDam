@@ -284,31 +284,16 @@ public static void buscarArticulo(){
 //Recibir articulo
 public static void recibirArticulo(){
     verAlmacen();
-    int pos = 0;
-    int cantidad = 0;
-
-    try {
-        pos = pedirInt("Dime la posición en la que se encuentra: ") -1; 
-        cantidad = pedirInt("Dime la cantidad que quieres añadir");
-    } catch (Exception e) {
-        System.out.println("Valor introducido incorrecto");
-        lector.nextLine();
-    }
+    int pos = pedirInt("Dime la posición en la que se encuentra: ") -1; 
+    int cantidad = pedirInt("Dime la cantidad que quieres añadir");
     almacen.recibirArticulo(pos, cantidad);
 }
 
 //Devolver Articulo
 public static void devolverArticulo(){
     verAlmacen();
-    int pos = 0;
-    int cantidad = 0;
-    try {
-        pos = pedirInt("Dime la posición en la que se encuentra: ") -1;
-        cantidad = pedirInt("Dime la cantidad que quieres añadir");
-    } catch (Exception e) {
-        System.out.println("Valor introducido incorrecto");
-        lector.nextLine();
-    }
+    int pos = pedirInt("Dime la posición en la que se encuentra: ") -1;
+    int cantidad = pedirInt("Dime la cantidad que quieres añadir");
     almacen.devolverArticulo(pos, cantidad);
 }
 //********************************************************************************
