@@ -6,7 +6,7 @@ public class Almacen {
     //articulos creados ya en el almacen
     public static void articulosEnAlmacen(){
         for (int i = 0; i < almacen.size(); i++) {
-            System.out.print(i + ". ");
+            System.out.println("Articulo " + (i+1));
             almacen.get(i).imprimir();
         }
     }
@@ -64,7 +64,7 @@ public class Almacen {
             return true;
         }
         else{
-            System.out.println("ERROR: No puedes poner numeros negativos o no hay tantos articulos");
+            System.out.println("ERROR: No puedes eliminar articulos que no estan");
             System.out.println(" ");
             return false;
         }
@@ -80,7 +80,7 @@ public class Almacen {
             return true;
         }
         else{
-            System.out.println("ERROR: No puedes poner numeros negativos o no hay tantos articulos");
+            System.out.println("ERROR: No puedes modificar articulos que no estan");
             return false;
         }
     }
