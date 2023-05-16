@@ -30,7 +30,12 @@ public class Almacen {
         if (precio > 0 && cantidad > 0 && eleccion >=1 && eleccion <= 3) {
             Articulo nuevoArticulo = new Articulo();
             nuevoArticulo.setNombre(nombre);
-            nuevoArticulo.setPrecio(precio);
+            try {
+                nuevoArticulo.setPrecio(precio);
+            } catch (Exception e) {
+                System.out.println("No se ha podido crear");
+            }
+            
             nuevoArticulo.setCantidad(cantidad);
             switch (eleccion) {
                 case 1:
@@ -75,7 +80,11 @@ public class Almacen {
     public boolean modificarArticulo(String nombre, double precio, int cantidad, int pos){
         if (precio > 0 && cantidad > 0) {
             articulos.get(pos).setNombre(nombre);
-            articulos.get(pos).setPrecio(precio);
+            try {
+                articulos.get(pos).setPrecio(precio);
+            } catch (Exception e) {
+                System.out.println("No se ha podido crear");
+            }
             articulos.get(pos).setCantidad(cantidad);
             System.out.println("Se ha modificado");
             return true;

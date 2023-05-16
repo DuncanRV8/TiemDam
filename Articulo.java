@@ -19,17 +19,22 @@ public class Articulo {
     public Articulo(String nombre,  double precio, int cantidad, IVA iva){
         setNombre(nombre);
         setIva(iva);
-        setPrecio(precio);
+        try {
+            setPrecio(precio);
+        } catch (Exception e) {
+            System.out.println("No se puede crear");
+        }
+        
         setCantidad(cantidad);
     }
 
     //Setter/Getter
-    public void setPrecio(double precio) {
+    public void setPrecio(double precio) throws Exception{
         if (precio > 0) {
             this.precio = precio;
         }
         else{
-            System.out.println("No puedes introducir numeros negativos o 0");
+            throw new Exception("No puedes introducir numeros negativos o 0");
         }
     }
     public double getPrecio() {

@@ -203,6 +203,7 @@ public static void pedido(){
 //********************************************************************************
 //Método pedir int
 public static int pedirInt(String mensaje){
+    int num= 0;
     System.out.print(mensaje);
     int eleccion = lector.nextInt();
     return eleccion;
@@ -364,4 +365,9 @@ public static void aplicarDesc(){
         inicarArticulos();
         menu();
     }
+
+    /*
+    boolean comprobar = true;
+
+     */
 }
