@@ -34,10 +34,12 @@ public class TienDam {
     System.out.println("2. Añadir articulo");
     System.out.println("3. Quitar articulo");
     System.out.println("4. Modificar articulo");
-    System.out.println("5. Aplicar descuento");
+    System.out.println("5. Aplicar descuento"); // no lo he hecho
     System.out.println("6. Mostrar carro");
-    System.out.println("7. Volver al menu principal");
-    System.out.println("8. Salir");
+    System.out.println("7. Mostrar el subtotal de los articulos sin IVA");
+    System.out.println("8. Mostrar total de los articulos con IVA");
+    System.out.println("9. Volver al menu principal");
+    System.out.println("10. Salir");
     System.out.println(" ");
    }
 //********************************************************************************
@@ -115,7 +117,7 @@ public static void elegirAlmacen(int eleccion){
 public static void elegirPedido(int eleccion){
     switch (eleccion) {
         case 1:
-            pedidos.calcularSubtotal();
+            ticket();
         break;
 
         case 2:
@@ -139,10 +141,18 @@ public static void elegirPedido(int eleccion){
         break;
 
         case 7:
-            menu();
+            subtotalCarrito();
         break;
 
         case 8:
+            totalCarrito();
+        break;
+
+        case 9:
+            menu();
+        break;
+
+        case 10:
             System.exit(0);
         break;
     
@@ -261,7 +271,7 @@ public static void buscarArticulo(){
 //Recibir articulo
 public static void recibirArticulo(){
     verAlmacen();
-    int pos = pedirInt("Dime la posición en la que se encuentra: ") -1; 
+    int pos = pedirInt("Dime la posición en la que se encuentra: ")-1; 
     int cantidad = pedirInt("Dime la cantidad que quieres añadir");
     almacen.recibirArticulo(pos, cantidad);
 }
@@ -275,6 +285,11 @@ public static void devolverArticulo(){
 }
 //********************************************************************************
 //PEDIDO
+
+//ticket
+public static void ticket(){
+    pedidos.imprimirPedido();
+}
 //añadir al carro
 public static void agregarCarro(){
     verAlmacen();
@@ -291,7 +306,7 @@ public static void eliminarDelCarro(){
     pedidos.eliminardelCarro(pos);
 }
 
-//modificar carr
+//modificar carrito
 public static void modificarCarro(){
     pedidos.verCarrito();
     int pos = pedirInt("Dime que posicion quieres modificar: ")-1;
@@ -299,15 +314,25 @@ public static void modificarCarro(){
     pedidos.modificarcarro(pos, cantidad);
 }
 
-//
+//subtotal carrito
+public static void subtotalCarrito(){
+    pedidos.calcularSubtotal();
+}
+
+//total carrito
+public static void totalCarrito(){
+    pedidos.calcularTotal();
+}
 
 //aplicar descuento
 public static void aplicarDesc(){
     pedidos.verCarrito();
-    int pos = pedirInt("A que articulo le quires descontar: ");
+    int pos = pedirInt("A que articulo le quires descontar: ")-1;
     int desc = pedirInt("Dime cuanto le quieres poner de descuento: ");
     pedidos.aplicarDesc(pos, desc);
 }
+
+
 
 //********************************************************************************
     public static void main(String[] args) {

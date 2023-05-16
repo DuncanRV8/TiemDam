@@ -118,14 +118,26 @@ public class Almacen {
 
     //Recibir Articulo
     public boolean recibirArticulo(int pos, int cantidad){
-        articulos.get(pos).aumentar(cantidad);
-        return true; 
+        if (cantidad <= 0 || pos > articulos.size() || pos < 0) {
+            System.out.println("ERROR: Dato invalido");
+            return false;
+        }
+        else{
+            articulos.get(pos).aumentar(cantidad);
+            return true;
+        } 
     }
 
     //devolver Articulo
     public boolean devolverArticulo(int pos , int cantidad){
-        articulos.get(pos).disminuir(cantidad);
-        return true;    
+        if (cantidad <= 0 || pos > articulos.size() || pos < 0) {
+            System.out.println("ERROR: Dato invalido");
+            return false;
+        }
+        else{
+            articulos.get(pos).disminuir(cantidad);
+            return true; 
+        }    
     }
 }
  
