@@ -44,10 +44,10 @@ public class Almacen {
             nuevoArticulo.setNombre(nombre);
             try {
                 nuevoArticulo.setPrecio(precio);
+                nuevoArticulo.setCantidad(cantidad);
             } catch (Exception e) {
                 System.out.println("No se ha podido crear");
             }
-            nuevoArticulo.setCantidad(cantidad);
             switch (eleccion) {
                 case 1:
                     nuevoArticulo.setIva(Articulo.IVA.Normal);
@@ -91,10 +91,11 @@ public class Almacen {
         if (precio > 0 && cantidad > 0) {
             try {
                 articulos.get(pos).setPrecio(precio);
+                articulos.get(pos).setCantidad(cantidad);
             } catch (Exception e) {
                 System.out.println("No se ha podido crear");
             }
-            articulos.get(pos).setCantidad(cantidad);
+            
             System.out.println("Se ha modificado");
             return true;
         }
@@ -120,31 +121,14 @@ public class Almacen {
 
     //Recibir Articulo
     public boolean recibirArticulo(int pos, int cantidad){
-        if (cantidad > 0) {
-            articulos.get(pos).aumentar(cantidad);
-            System.out.println("Se ha aumentado la cantidad");
-            return true;
-        }
-        else{
-            System.out.println("No se ha podido aumentar porque es negativo o 0");
-            return false;
-        }
-        
+        articulos.get(pos).aumentar(cantidad);
+        return true; 
     }
 
     //devolver Articulo
     public boolean devolverArticulo(int pos , int cantidad){
-        int tmp = articulos.get(pos).getCantidad();
-        if (cantidad > tmp) {
-           System.out.print("No se ha podido descontar"); 
-           return false;
-        }
-        else{
-            System.out.println("Se ha podido eliminar la cantidad");
-            tmp = tmp - cantidad;
-            articulos.get(pos).setCantidad(tmp);
-            return true;
-        }
+        articulos.get(pos).disminuir(cantidad);
+        return true;    
     }
 }
  

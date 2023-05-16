@@ -291,7 +291,7 @@ public static void recibirArticulo(){
 public static void devolverArticulo(){
     verAlmacen();
     int pos = pedirInt("Dime la posición en la que se encuentra: ") -1;
-    int cantidad = pedirInt("Dime la cantidad que quieres añadir");
+    int cantidad = pedirInt("Dime la cantidad que quieres quitar");
     almacen.devolverArticulo(pos, cantidad);
 }
 //********************************************************************************

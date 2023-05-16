@@ -19,11 +19,12 @@ public class Articulo {
         setIva(iva);
         try {
             setPrecio(precio);
+            setCantidad(cantidad);
         } catch (Exception e) {
             System.out.println("No se puede crear");
         }
         
-        setCantidad(cantidad);
+        
     }
 
     //Setter/Getter
@@ -39,12 +40,12 @@ public class Articulo {
         return precio;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(int cantidad) throws Exception {
         if (cantidad > 0) {
             this.cantidad = cantidad;
         }
         else{
-            System.out.println("No puedes introducir numeros negativos o 0");
+            throw new Exception("No puedes introducir numeros negativos o 0");
         }
     }
     public int getCantidad() {
@@ -66,8 +67,13 @@ public class Articulo {
     
     //Metodos
     public void aumentar(int cant){
+      if (cant != 0) {
         System.out.println("Se ha sumado la cantidad");
-        this.cantidad =+ cant;
+        this.cantidad += cant;
+      }
+      else{
+        System.out.println("ERROR no se ha podido añadir");
+      }
     }
 
     public boolean disminuir(int cant){
@@ -77,7 +83,7 @@ public class Articulo {
         }
         else{
             System.out.println("Se ha restado la cantidad");
-            cantidad =- cant;
+            cantidad -= cant;
             return true;
         }
     }
