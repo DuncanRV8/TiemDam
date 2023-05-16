@@ -27,7 +27,7 @@ public class Almacen {
     //añadir articulo
     public static boolean agregarArticulo(String nombre, double precio,int cantidad, int eleccion){
         boolean comprobar = true;
-        if (precio > 0) {
+        if (precio > 0 && cantidad > 0) {
             Articulo nuevoart = new Articulo();
             nuevoart.setNombre(nombre);
             nuevoart.setPrecio(precio);
@@ -56,16 +56,31 @@ public class Almacen {
 
     //Eliminar articulo
     public static boolean eliminarArticulo(int pos){
-        almacen.remove(pos);
-        System.out.println("Se ha eliminado el artículo");
-        return true;
+        if (pos >= 0 && pos <= almacen.size()) {
+            almacen.remove(pos);
+            System.out.println("Se ha eliminado el artículo");
+            return true;
+        }
+        else{
+            System.out.println("ERROR: No puedes poner numeros negativos o no hay tantos articulos");
+            System.out.println(" ");
+            return false;
+        }
+       
     }
     //Modificar articulo
     public static boolean modificarArticulo(String nombre, double precio, int cantidad, int pos){
-        almacen.get(pos).setNombre(nombre);
-        almacen.get(pos).setPrecio(precio);
-        almacen.get(pos).setCantidad(cantidad);
-        return true;
+        if (precio > 0 && cantidad > 0) {
+            almacen.get(pos).setNombre(nombre);
+            almacen.get(pos).setPrecio(precio);
+            almacen.get(pos).setCantidad(cantidad);
+            System.out.println("Se ha modificado");
+            return true;
+        }
+        else{
+            System.out.println("ERROR: No puedes poner numeros negativos o no hay tantos articulos");
+            return false;
+        }
     }
 
     //Buscar articulo
