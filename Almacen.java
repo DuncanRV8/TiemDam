@@ -93,7 +93,6 @@ public class Almacen {
             } catch (Exception e) {
                 System.err.println("No se ha podido crear");
             }
-            
             System.out.println("Se ha modificado");
             return true;
         }

@@ -70,15 +70,24 @@ public class Pedido {
 
     //modificar carrito
     public boolean modificarcarro(int pos, int cantidad){
-        return true;
+        if (cantidad > 0) {
+            try {
+                carrito.get(pos).setCantidad(cantidad);
+            } catch (Exception e) {
+                    System.out.println("No se ha añadido");
+            }
+            System.out.println("Se ha modificado");
+            return true;
+        }
+        else{
+            System.out.println("ERROR: no puedes modificar artículos que no están");
+            return false;
+        }
     }
 
     //calcular precio
-    public void calcularPrecio(){
-        double precioFinal = 0;
-        for (int i = 0; i < carrito.size(); i++) {
-        precioFinal = carrito.get(i).getPrecio() * carrito.get(i).getCantidad();
-        }
+    public void calcularSubtotal(){
+        
     }
     //aplicar descuento
     public boolean aplicarDesc(int pos, int desc){

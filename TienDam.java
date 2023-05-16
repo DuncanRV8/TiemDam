@@ -275,18 +275,11 @@ public static void devolverArticulo(){
 }
 //********************************************************************************
 //PEDIDO
-
 //añadir al carro
 public static void agregarCarro(){
     verAlmacen();
-    int pos = 0;
-    int cantidad = 0;
-    try {
-        pos = pedirInt("Dime la posicion en la que esta: ") -1;
-        cantidad = pedirInt("Dime la cantidad que quieres: ");
-    } catch (Exception e) {
-        System.out.println("No se ha podido añadir");
-    }
+    int pos = pedirInt("Dime la posicion en la que esta: ") -1;
+    int cantidad = pedirInt("Dime la cantidad que quieres: ");
     Articulo art = new Articulo(almacen.articulos.get(pos).getNombre(), almacen.articulos.get(pos).getPrecio(),cantidad, almacen.articulos.get(pos).getIva());
     pedidos.agregarCarro(art);
 }
@@ -294,27 +287,25 @@ public static void agregarCarro(){
 //eliminar del carrito
 public static void eliminarDelCarro(){
     pedidos.verCarrito();
-    int pos = 0;
-    pos = pedirInt("Dime la posicion que quieres eliminar: ") -1;
+    int pos = pedirInt("Dime la posicion que quieres eliminar: ")-1;
     pedidos.eliminardelCarro(pos);
 }
 
-//modificar carro
+//modificar carr
 public static void modificarCarro(){
-    System.out.print("Dime que posicion quieres modificar: ");
-    int pos = lector.nextInt();
-    System.out.print("Dime la cantidad: ");
-    int cantidad = lector.nextInt();
+    pedidos.verCarrito();
+    int pos = pedirInt("Dime que posicion quieres modificar: ")-1;
+    int cantidad = pedirInt("Dime la cantidad: ");
     pedidos.modificarcarro(pos, cantidad);
 }
+
+//
 
 //aplicar descuento
 public static void aplicarDesc(){
     pedidos.verCarrito();
-    System.out.print("A que articulo le quiieres descontar: ");
-    int pos = lector.nextInt();
-    System.out.print("Dime cuanto le quieres poner de descuento: ");
-    int desc = lector.nextInt();
+    int pos = pedirInt("A que articulo le quires descontar: ");
+    int desc = pedirInt("Dime cuanto le quieres poner de descuento: ");
     pedidos.aplicarDesc(pos, desc);
 }
 
