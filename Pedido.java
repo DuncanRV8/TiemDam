@@ -75,9 +75,9 @@ public class Pedido {
 
     //calcular precio
     public void calcularPrecio(){
-        double precioFinal  = 0;
+        double precioFinal = 0;
         for (int i = 0; i < carrito.size(); i++) {
-           precioFinal = carrito.get(i).getPrecio() * carrito.get(i).getCantidad();
+        precioFinal = carrito.get(i).getPrecio() * carrito.get(i).getCantidad();
         }
     }
     //aplicar descuento
@@ -90,5 +90,10 @@ public class Pedido {
             System.out.println("No se ha podido hacer el descuento");
             return false;
         }
-    }  
+    }
+    
+    //imprimir informacion
+    public void imprimirPedido(){
+        System.out.println("");
+    }
 }

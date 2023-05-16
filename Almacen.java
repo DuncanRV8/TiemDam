@@ -73,7 +73,7 @@ public class Almacen {
         
     //Eliminar articulo
     public boolean eliminarArticulo(int pos){
-        if (pos >= 0 && pos <= articulos.size()) {
+        if (pos >= 0 && pos < articulos.size()) {
             articulos.remove(pos);
             System.out.println("Se ha eliminado el artículo");
             return true;
