@@ -87,9 +87,8 @@ public class Almacen {
        
     }
     //Modificar articulo
-    public boolean modificarArticulo(String nombre, double precio, int cantidad, int pos){
+    public boolean modificarArticulo(double precio, int cantidad, int pos){
         if (precio > 0 && cantidad > 0) {
-            articulos.get(pos).setNombre(nombre);
             try {
                 articulos.get(pos).setPrecio(precio);
             } catch (Exception e) {

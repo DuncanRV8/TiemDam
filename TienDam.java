@@ -266,11 +266,9 @@ public static void eliminarArticulo(){
 public static void modificarArticulo(){
     verAlmacen();
     int pos = pedirInt("Dime la posición: ")-1;
-    System.out.print("Dime el nuevo nombre: ");
-    String nombre = lector.next();
     double precio = pedirInt("Dime el precio: ");
     int cantidad = pedirInt("Dime la cantidad: ");
-    almacen.modificarArticulo(nombre, precio, cantidad, pos);
+    almacen.modificarArticulo(precio, cantidad, pos);
 }
 
 //Buscar articulo del almacen
