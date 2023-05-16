@@ -14,6 +14,7 @@ public class TienDam {
         System.out.println("1. Almacen");
         System.out.println("2. Pedido");
         System.out.println("3. Salir");
+        System.out.println(" ");
     }
 
    //Menu Almacen
@@ -27,6 +28,7 @@ public class TienDam {
     System.out.println("7. Devolver articulos");
     System.out.println("8. Volver al menu principal");
     System.out.println("9. Salir");
+    System.out.println(" ");
    }  
 
    public static void menuPedido(){
@@ -38,6 +40,7 @@ public class TienDam {
     System.out.println("6. Mostrar carro");
     System.out.println("7. Volver al menu principal");
     System.out.println("8. Salir");
+    System.out.println(" ");
    }
 //********************************************************************************
 
@@ -61,6 +64,7 @@ public static void elegirMenu(int eleccion){
     
         default:
             System.out.println("No se puede elegir esa opción");
+            System.out.println(" ");
     }
 }
 
@@ -105,6 +109,7 @@ public static void elegirAlmacen(int eleccion){
     
         default:
         System.out.println("No se puede elegir esa opción");
+        System.out.println(" ");
     }
 }
 
@@ -145,6 +150,7 @@ public static void elegirPedido(int eleccion){
     
         default:
             System.out.println("No se puede elegir esa opción");
+            System.out.println(" ");
     }
 }
 
@@ -159,6 +165,7 @@ public static void menu(){
            opcion = pedirInt("Elige una opción: ");
         } catch (Exception e) {
             System.out.println("valor introducido incorrecto");
+            System.out.println(" ");
             lector.nextLine();
         }
         elegirMenu(opcion);
@@ -174,6 +181,7 @@ public static void almacenn(){
             opcion = pedirInt("Elige una opcion: ");
         } catch (Exception e) {
             System.out.println("Valor introducido incorrecto");
+            System.out.println(" ");
             lector.nextLine();
         }
         elegirAlmacen(opcion);
@@ -189,6 +197,7 @@ public static void pedido(){
             opcion = pedirInt("Elige una opcion: ");
         } catch (Exception e) {
             System.out.println("Valor introducido incorrecto");
+            System.out.println(" ");
             lector.nextLine();
         }
         elegirPedido(opcion);
