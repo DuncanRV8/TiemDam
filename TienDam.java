@@ -211,19 +211,28 @@ public static int pedirInt(String mensaje){
             num = lector.nextInt();
             continuar = false;
         } catch (Exception e) {
-            System.out.println("ERROR: No puedes poner eso");
+            System.out.println("ERROR: parámetro no valido");
             lector.nextLine();
         }
     } while (continuar);
     return num;
-    
 }
 
 //Método pedir double
 public static double pedirDouble(String mensaje){
-    System.out.print(mensaje);
-    double eleccion = lector.nextDouble();
-    return eleccion;
+    double num = 0;
+    boolean continuar = true;
+    do {
+        try {
+            System.out.println(mensaje);
+            num = lector.nextDouble();
+            continuar = false;
+        } catch (Exception e) {
+            System.out.println("ERROR: parámetro no valido");
+            lector.nextLine();
+        }  
+    } while (continuar);
+    return num;
 }
 //********************************************************************************
 //ALMACEN
@@ -239,50 +248,28 @@ public static void verAlmacen(){
 }
 //Añadir articulo al almacen
 public static void agregarArticulo(){
-    double precio = 0;
-    int cantidad = 0;
-    int elegir = 0;
     System.out.print("Dime el nombre del articulo: ");
     String nombre = lector.next();
-    try {
-        precio = pedirDouble("Dime el precio: ");
-        cantidad = pedirInt("Dime la cantidad: ");
-        elegir = pedirInt("Dime el tipo de iva: " + "\n" +  "1.Normal " + "\n" + "2.Reducida"  + "\n" + "3.Superreducida" + "\n");
-    } catch (Exception e) {
-        System.out.println("Valor introducido incorrecto");
-        lector.nextLine();
-    }
+    lector.nextLine();
+    double precio = pedirDouble("Dime el precio: ");
+    int cantidad = pedirInt("Dime la cantidad: ");
+    int elegir = pedirInt("Dime el tipo de iva: " + "\n" +  "1.Normal " + "\n" + "2.Reducida"  + "\n" + "3.Superreducida" + "\n");
     almacen.agregarArticulo(nombre,precio,cantidad,elegir);
 }
 //Eliminar articulo del almacen
 public static void eliminarArticulo(){
     verAlmacen();
-    int pos = 0;
-    try {
-        pos = pedirInt("Dime la posición: ") -1;
-    } catch (Exception e) {
-        System.out.println("Valor introducido incorrecto");
-        lector.nextLine();
-    }
+    int pos = pedirInt("Dime la posición: ")-1;
     almacen.eliminarArticulo(pos);
 }
 //Modificar articulo del almacen
 public static void modificarArticulo(){
     verAlmacen();
-    int pos = 0;
-    double precio = 0;
-    int cantidad = 0;
-    String nombre = null;
-    try {
-        pos = pedirInt("Dime la posición: ") -1;
-        System.out.print("Dime el nuevo nombre: ");
-        nombre = lector.next();
-        precio = pedirInt("Dime el precio: ");
-        cantidad = pedirInt("Dime la cantidad: ");
-    } catch (Exception e) {
-        System.out.println("Valor introducido incorrecto");
-        lector.nextLine();
-    }
+    int pos = pedirInt("Dime la posición: ")-1;
+    System.out.print("Dime el nuevo nombre: ");
+    String nombre = lector.next();
+    double precio = pedirInt("Dime el precio: ");
+    int cantidad = pedirInt("Dime la cantidad: ");
     almacen.modificarArticulo(nombre, precio, cantidad, pos);
 }
 

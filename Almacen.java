@@ -2,6 +2,11 @@ import java.util.ArrayList;
 public class Almacen {
     //Atributos
     public ArrayList<Articulo> articulos = new ArrayList<>();
+
+    //Constructores
+    public Almacen() {
+
+    }
     
     //articulos creados ya en el articulos
     public void articulosEnAlmacen(){
@@ -26,8 +31,15 @@ public class Almacen {
 
     //añadir articulo
     public boolean agregarArticulo(String nombre, double precio,int cantidad, int eleccion){
-        boolean comprobar = true;
-        if (precio > 0 && cantidad > 0 && eleccion >=1 && eleccion <= 3) {
+        int contador = 0;
+        //Si precio es mayor a 0 la cantidad es mayor a 0 la eleccion = iva es mayor o igual a 1 y menor o igual a 3
+        //Si el nombre esta en la lista no se agregahola
+        for (int i = 0; i < articulos.size(); i++) {
+            if (articulos.get(i).getNombre().equalsIgnoreCase(nombre)) {
+                contador++;
+            }
+        }
+        if (contador == 0 && precio > 0 && cantidad > 0 && eleccion >=1 && eleccion <= 3) {
             Articulo nuevoArticulo = new Articulo();
             nuevoArticulo.setNombre(nombre);
             try {
@@ -35,7 +47,6 @@ public class Almacen {
             } catch (Exception e) {
                 System.out.println("No se ha podido crear");
             }
-            
             nuevoArticulo.setCantidad(cantidad);
             switch (eleccion) {
                 case 1:
@@ -51,16 +62,15 @@ public class Almacen {
             articulos.add(nuevoArticulo);
             System.out.println("Se ha creado el objeto");
             System.out.println(" ");
-            comprobar = true;
-            return comprobar;
+            return true;
         }
         else{
             System.out.println("No se ha podido añadir tu articulo");
             System.out.println(" ");
-            comprobar = false;
-            return comprobar; 
+            return false; 
         }
     }
+        
 
     //Eliminar articulo
     public boolean eliminarArticulo(int pos){
@@ -97,19 +107,15 @@ public class Almacen {
 
     //Buscar articulo
     public void buscarArticulo(String nombre){
-        boolean comprobar = true;
+        int contador = 0;
         for (int i = 0; i < articulos.size(); i++) {
             if (articulos.get(i).getNombre().contains(nombre)) {
-                System.out.println("Aquí tienes todos los articulos con ese nombre: ");
                 articulos.get(i).imprimir();
-                comprobar = true;
-            } 
-            else{
-                comprobar = false;
+                contador++;
             }
         }
-        if (comprobar == false ) {
-            System.out.println("No se ha encontrado el nombre;");
+        if (contador == 0) {
+            System.out.println("No se ha encontrado a nadie con ese nombre");               
         }
     }
 
@@ -140,11 +146,6 @@ public class Almacen {
             articulos.get(pos).setCantidad(tmp);
             return true;
         }
-    }
-
-    //Constructores
-    public Almacen() {
-
     }
 }
  

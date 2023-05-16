@@ -1,6 +1,4 @@
 public class Articulo {
-
-
     //enum
     public enum IVA{
         Normal,Reducido,SuperReducido;
