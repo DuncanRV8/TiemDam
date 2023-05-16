@@ -27,7 +27,7 @@ public class Almacen {
     //añadir articulo
     public static boolean agregarArticulo(String nombre, double precio,int cantidad, int eleccion){
         boolean comprobar = true;
-        if (precio > 0 && cantidad > 0) {
+        if (precio > 0 && cantidad > 0 && eleccion >=1 && eleccion <= 3) {
             Articulo nuevoart = new Articulo();
             nuevoart.setNombre(nombre);
             nuevoart.setPrecio(precio);
@@ -45,10 +45,12 @@ public class Almacen {
             }
             almacen.add(nuevoart);
             System.out.println("Se ha creado el objeto");
+            System.out.println(" ");
             comprobar = true;
             return comprobar;
         }else{
             System.out.println("No se ha podido añadir tu articulo");
+            System.out.println(" ");
             comprobar = false;
             return comprobar; 
         }

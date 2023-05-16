@@ -230,7 +230,7 @@ public static void agregarArticulo(){
     try {
         precio = pedirDouble("Dime el precio: ");
         cantidad = pedirInt("Dime la cantidad: ");
-        elegir = pedirInt("Dime el tipo de iva: 1.Normal 2.Reducida 3.Superreducida");
+        elegir = pedirInt("Dime el tipo de iva: 1.Normal 2.Reducida 3.Superreducida: ");
     } catch (Exception e) {
         System.out.println("Valor introducido incorrecto");
         lector.nextLine();
