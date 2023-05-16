@@ -157,14 +157,7 @@ public static void elegirPedido(int eleccion){
 public static void menu(){
     while (true) {
         menuPricipal();
-        int opcion = 0;
-        try {
-           opcion = pedirInt("Elige una opción: ");
-        } catch (Exception e) {
-            System.out.println("valor introducido incorrecto");
-            System.out.println(" ");
-            lector.nextLine();
-        }
+        int opcion = pedirInt("Elige una opción: ");
         elegirMenu(opcion);
     }
 }
@@ -173,14 +166,7 @@ public static void menu(){
 public static void almacen(){
     while (true) {
         menuAlmacen();
-        int opcion = 0;
-        try {
-            opcion = pedirInt("Elige una opcion: ");
-        } catch (Exception e) {
-            System.out.println("Valor introducido incorrecto");
-            System.out.println(" ");
-            lector.nextLine();
-        }
+        int opcion = pedirInt("Elige una opcion: ");
         elegirAlmacen(opcion);
     }
 }
@@ -189,14 +175,7 @@ public static void almacen(){
 public static void pedido(){
     while (true) {
         menuPedido();
-        int opcion = 0;
-        try {
-            opcion = pedirInt("Elige una opcion: ");
-        } catch (Exception e) {
-            System.out.println("Valor introducido incorrecto");
-            System.out.println(" ");
-            lector.nextLine();
-        }
+        int opcion = pedirInt("Elige una opcion: ");
         elegirPedido(opcion);
     }
 }
@@ -344,9 +323,4 @@ public static void aplicarDesc(){
         inicarArticulos();
         menu();
     }
-
-    /*
-    boolean comprobar = true;
-
-     */
 }
